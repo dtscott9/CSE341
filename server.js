@@ -1,10 +1,9 @@
-
 const express = require('express');
 const app = express();
+const names = require('./controllers/names');
 
-app.get('/', (req, res) => {
-    res.send("Dylan")
-})
+app.get('/', names.dylanRoute);
+app.use('/derek', names.derekRoute)
 
 const port = process.env.PORT || 3000
 

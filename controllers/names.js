@@ -1,12 +1,9 @@
-function getBob() {
-    return "Bob";
-}
+const dylanRoute = (req, res) => {
+    res.send('Dylan');
+  };
 
-function getSue() {
-    return "Sue"
+const derekRoute = (req, res) => {
+    res.send('Derek')
 }
-
-module.exports = {
-    "getBob": getBob,
-    "getSue": getSue
-}
+  
+  module.exports = { dylanRoute, derekRoute };
