@@ -1,0 +1,9 @@
+{
+    "contact": {
+        "firstName": "Sarah",
+        "lastName": "Jane",
+        "email": "sarahjane@email.com",
+        "favoriteColor": "orange",
+        "birthday": "03/04/01"
+    }
+}
