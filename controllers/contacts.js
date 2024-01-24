@@ -1,21 +1,45 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
+function getMongoDb() {
+  return mongodb.getDb().db('cse341').collection('contacts');
+}
+
 const getAllContacts = async (req, res, next) => {
-  const result = await mongodb.getDb().db('cse341').collection('contacts').find();
+  const result = await getMongoDb().find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists); 
+    res.status(200).json(lists);
   });
 };
 
 const getOneContact = async (req, res, next) => {
-    const contactId = new ObjectId(req.params.id)
-    const result = await mongodb.getDb().db('cse341').collection('contacts').find({_id: contactId});
-    result.toArray().then((lists) => {
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(lists[0]); 
-    });
+  const contactId = new ObjectId(req.params.id);
+  const result = await getMongoDb().find({ _id: contactId });
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists[0]);
+  });
+};
+
+const addContact = async (req, res, next) => {
+  const newContact = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday
   };
- 
-module.exports = { getAllContacts, getOneContact };
+  const result = await getMongoDb().insertOne(newContact);
+  if (result.acknowledged) {
+    res.status(201).json(result);
+  } else {
+    res.status(500).json(result.error || 'An error occurred while trying to create contact');
+  }
+};
+
+const updateContact = async (req, res, next) => {};
+
+const deleteContact = async (req, res, next) => {};
+
+module.exports = { getAllContacts, getOneContact, addContact, updateContact, deleteContact };

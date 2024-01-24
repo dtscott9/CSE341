@@ -1,1 +1,17 @@
+### Local Get request for contacts
 GET http://localhost:8080/contacts
+
+### Render Get request for contacts
+GET https://cse341-rlay.onrender.com/contacts 
+
+### Local Post request for creating a contact
+POST http://localhost:8080/contacts HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Johnathon",
+  "lastName": "Smith",
+  "email": "johnsmith@email.com",
+  "favoriteColor": "red",
+  "birthday": "08/29/01"
+}
