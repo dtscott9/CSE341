@@ -51,3 +51,6 @@ content-type: application/json
   "favoriteColor": "lavendar",
   "birthday": "03/04/01"
 }
+
+### Local Delete request for deleting a contact
+DELETE http://localhost:8080/contacts//65b0a0c409ec516c93efb6dd HTTP/1.1

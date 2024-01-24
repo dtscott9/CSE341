@@ -55,6 +55,14 @@ const updateContact = async (req, res, next) => {
   }
 };
 
-const deleteContact = async (req, res, next) => {};
+const deleteContact = async (req, res, next) => {
+  const contactId = new ObjectId(req.params.id);
+  const result = await getMongoDb().deleteOne({_id: contactId});
+  if (result.deletedCount > 0) {
+    res.status(202).json(result);
+  } else {
+    res.status(404).json(result.error || "An error occurred while trying to delete the contact")
+  }
+};
 
 module.exports = { getAllContacts, getOneContact, addContact, updateContact, deleteContact };
