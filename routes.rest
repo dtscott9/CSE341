@@ -39,3 +39,15 @@ content-type: application/json
   "favoriteColor": "purple",
   "birthday": "02/16/97"
 }
+
+### Render Put request for updating a contact
+PUT https://cse341-rlay.onrender.com/contacts/65b0180d07ffce0d5850f260 HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Sarah",
+  "lastName": "Jane",
+  "email": "sarahjane@email.com",
+  "favoriteColor": "lavendar",
+  "birthday": "03/04/01"
+}
