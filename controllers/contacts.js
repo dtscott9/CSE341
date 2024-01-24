@@ -34,11 +34,26 @@ const addContact = async (req, res, next) => {
   if (result.acknowledged) {
     res.status(201).json(result);
   } else {
-    res.status(500).json(result.error || 'An error occurred while trying to create contact');
+    res.status(500).json(result.error || "An error occurred while trying to create contact");
   }
 };
 
-const updateContact = async (req, res, next) => {};
+const updateContact = async (req, res, next) => {
+  const contactId = new ObjectId(req.params.id);
+  const newContact = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday
+  };
+  const result = await getMongoDb().replaceOne({ _id: contactId }, newContact);
+  if(result.modifiedCount > 0) {
+    res.status(204).json(result)
+  } else {
+    res.status(400).json(result.error ||"An error occurred while trying to update the contact" )
+  }
+};
 
 const deleteContact = async (req, res, next) => {};
 

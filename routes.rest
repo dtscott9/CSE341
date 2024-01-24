@@ -15,3 +15,27 @@ content-type: application/json
   "favoriteColor": "red",
   "birthday": "08/29/01"
 }
+
+### Render Post request for creating a contact
+POST https://cse341-rlay.onrender.com/contacts HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Jenna",
+  "lastName": "Alexander",
+  "email": "jennaalexh@email.com",
+  "favoriteColor": "pink",
+  "birthday": "06/15/99"
+}
+
+### Local Put request for updating a contact
+PUT http://localhost:8080/contacts/65b017f807ffce0d5850f25f HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Joe",
+  "lastName": "Blue",
+  "email": "joeblue@email.com",
+  "favoriteColor": "purple",
+  "birthday": "02/16/97"
+}
